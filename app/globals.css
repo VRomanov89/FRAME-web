@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply bg-frame-blue text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-700 hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-frame-gray-800 text-frame-gray-800 px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-frame-gray-800 hover:text-white;
+  }
+  
+  .section-padding {
+    @apply py-20 lg:py-32;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-frame-blue to-blue-600 bg-clip-text text-transparent;
+  }
+} 
