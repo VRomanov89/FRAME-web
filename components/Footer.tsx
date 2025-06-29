@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Linkedin, Twitter } from 'lucide-react'
+import { Linkedin } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -19,10 +19,6 @@ export default function Footer() {
               <a href="https://www.linkedin.com/company/framexl" target="_blank" rel="noopener noreferrer" className="text-frame-gray-500 hover:text-frame-blue">
                 <span className="sr-only">LinkedIn</span>
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://twitter.com/framexl" target="_blank" rel="noopener noreferrer" className="text-frame-gray-500 hover:text-frame-blue">
-                <span className="sr-only">Twitter</span>
-                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
