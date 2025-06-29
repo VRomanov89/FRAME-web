@@ -5,7 +5,7 @@ const team = [
     name: 'Vladimir Romanov',
     title: 'Managing Partner',
     bio: 'Manufacturing operations expert with 15+ years of experience in industrial automation, reliability engineering, and operational excellence. Passionate about helping manufacturing professionals grow their careers and improve their factories.',
-    image: '/vladimir-romanov.webp',
+    image: '/team/vladimir-romanov.webp',
     linkedin: 'https://www.linkedin.com/in/vladromanov/',
     github: 'https://github.com/VRomanov89',
     twitter: 'https://x.com/VRomanov89',
@@ -74,19 +74,55 @@ export default function Team() {
         <div className="flex justify-center mb-20">
           {team.map((member) => (
             <div key={member.name} className="bg-white rounded-2xl shadow-lg border border-frame-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 max-w-2xl">
-              {/* Profile Image */}
-              <div className="h-64 bg-gradient-to-br from-frame-blue/10 to-frame-blue/5 flex items-center justify-center">
-                {member.image ? (
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
-                  />
-                ) : (
-                  <div className="w-32 h-32 rounded-full bg-frame-blue/20 flex items-center justify-center border-4 border-white shadow-lg">
-                    <span className="text-4xl font-bold text-frame-blue">{member.name[0]}</span>
+              {/* Industrial Background with Profile Image */}
+              <div className="h-64 relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900">
+                {/* Industrial Background Elements */}
+                <div className="absolute inset-0 opacity-20">
+                  {/* Circuit Board Pattern */}
+                  <div className="absolute top-4 left-4 w-16 h-16 border border-frame-blue/30 rounded"></div>
+                  <div className="absolute top-8 left-8 w-8 h-8 border border-frame-blue/20 rounded"></div>
+                  <div className="absolute top-12 left-12 w-4 h-4 bg-frame-blue/20 rounded-full"></div>
+                  
+                  {/* Factory Silhouette */}
+                  <div className="absolute bottom-0 right-0 w-32 h-32 opacity-10">
+                    <div className="absolute bottom-0 right-0 w-24 h-16 bg-frame-blue/30 rounded-t"></div>
+                    <div className="absolute bottom-0 right-2 w-4 h-20 bg-frame-blue/20"></div>
+                    <div className="absolute bottom-0 right-8 w-4 h-16 bg-frame-blue/20"></div>
+                    <div className="absolute bottom-0 right-14 w-4 h-18 bg-frame-blue/20"></div>
+                    <div className="absolute bottom-0 right-20 w-4 h-14 bg-frame-blue/20"></div>
                   </div>
-                )}
+                  
+                  {/* Gear Elements */}
+                  <div className="absolute top-1/4 right-1/4 w-12 h-12 opacity-10">
+                    <div className="w-full h-full border-2 border-frame-blue/30 rounded-full relative">
+                      <div className="absolute top-1/2 left-1/2 w-1 h-6 bg-frame-blue/30 transform -translate-x-1/2 -translate-y-1/2"></div>
+                      <div className="absolute top-1/2 left-1/2 w-6 h-1 bg-frame-blue/30 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Data Flow Lines */}
+                  <div className="absolute top-1/3 left-1/3 w-20 h-1 bg-gradient-to-r from-transparent via-frame-blue/20 to-transparent"></div>
+                  <div className="absolute top-2/3 right-1/3 w-16 h-1 bg-gradient-to-r from-transparent via-frame-blue/20 to-transparent"></div>
+                </div>
+                
+                {/* Profile Photo */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative">
+                    {member.image ? (
+                      <img 
+                        src={member.image} 
+                        alt={member.name} 
+                        className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-2xl ring-4 ring-frame-blue/20"
+                      />
+                    ) : (
+                      <div className="w-32 h-32 rounded-full bg-frame-blue/20 flex items-center justify-center border-4 border-white shadow-2xl ring-4 ring-frame-blue/20">
+                        <span className="text-4xl font-bold text-frame-blue">{member.name[0]}</span>
+                      </div>
+                    )}
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 w-32 h-32 rounded-full bg-frame-blue/10 blur-xl"></div>
+                  </div>
+                </div>
               </div>
 
               {/* Profile Content */}
