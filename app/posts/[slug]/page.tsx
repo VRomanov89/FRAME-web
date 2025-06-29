@@ -15,7 +15,8 @@ async function getIssueBySlug(slug: string): Promise<BeehiivIssue | null> {
   const apiKey = process.env.BEEHIIV_API_KEY
   if (!publicationId || !apiKey) return null
 
-  const res = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?limit=100`, {
+  // Use expand=free_web_content to get the full HTML
+  const res = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?expand=free_web_content&limit=100`, {
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },
@@ -35,17 +36,15 @@ async function getIssueBySlug(slug: string): Promise<BeehiivIssue | null> {
     console.error('No issue found for slug:', slug, 'Available slugs:', data.data.map((p: any) => p.slug))
     return null
   }
-  // Log all available fields for debugging
-  console.log('Beehiiv issue fields:', Object.keys(issue))
-  // Use the first available full content field
-  const html = issue.html || issue.body_html || issue.content || ''
+  // Use the full HTML from content.free.web
+  const html = issue.content?.free?.web || ''
   return {
     id: issue.id,
     title: issue.title,
     slug: issue.slug,
     html,
-    published_at: issue.published_at || issue.created_at || issue.updated_at || '',
-    excerpt: issue.excerpt || '',
+    published_at: issue.publish_date || issue.displayed_date || issue.created || '',
+    excerpt: issue.preview_text || '',
   }
 }
 
@@ -82,7 +81,7 @@ export default async function IssuePage({ params }: { params: { slug: string } }
 
   let displayDate = 'Unpublished'
   if (issue.published_at) {
-    const parsed = new Date(issue.published_at)
+    const parsed = new Date(Number.isInteger(issue.published_at) ? Number(issue.published_at) * 1000 : issue.published_at)
     if (!isNaN(parsed.getTime())) {
       displayDate = parsed.toLocaleDateString()
     }
