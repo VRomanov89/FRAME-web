@@ -1,15 +1,13 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
+import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import SignupPopup from '@/components/SignupPopup'
 import { Analytics } from '@vercel/analytics/next'
-import { useState, useEffect } from 'react'
+import PopupProvider from '@/components/PopupProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'FRAME Dispatch',
   description: 'Foundation for Reliability, Automation, Manufacturing & Excellence - Tactical insights to grow your career and improve your factory, delivered weekly.',
   keywords: 'manufacturing, automation, operations, engineering, plant management, industrial, newsletter',
@@ -32,32 +30,18 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const [showPopup, setShowPopup] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowPopup(true)
-    }, 5000)
-    return () => clearTimeout(timer)
-  }, [])
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <Header />
         <div className="min-h-screen flex flex-col">
-          <main className="flex-grow">
+          <PopupProvider>
             {children}
-          </main>
+          </PopupProvider>
           <Footer />
         </div>
         <Analytics />
-        <SignupPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
       </body>
     </html>
   )
