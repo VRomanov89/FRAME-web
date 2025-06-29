@@ -21,7 +21,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="FRAME Logo" width={48} height={48} priority />
+            <Image src="/frame-logo.png" alt="FRAME Logo" width={48} height={48} priority />
             <span className="text-2xl font-bold text-frame-gray-900 tracking-tight">FRAME</span>
           </Link>
 
