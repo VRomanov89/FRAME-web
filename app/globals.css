@@ -1,3 +1,10 @@
+/* Basic CSS Test - This should always work */
+body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -147,6 +147,11 @@ const ManufacturingStories = () => {
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Basic CSS Test */}
+      <div style={{backgroundColor: 'yellow', color: 'black', padding: '10px', textAlign: 'center', fontWeight: 'bold'}}>
+        BASIC CSS TEST - If you see this yellow box, basic CSS is working!
+      </div>
+      
       {/* Tailwind Test Section */}
       <div className="bg-red-500 text-white p-4 text-center">
         <h1 className="text-2xl font-bold">TAILWIND TEST - If you see this styled, Tailwind is working!</h1>
