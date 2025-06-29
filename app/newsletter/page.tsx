@@ -16,10 +16,10 @@ function getDisplayDate(issue: any) {
 }
 
 function getReadingTime(issue: any) {
-  if (issue.reading_time && Number(issue.reading_time) > 0) {
+  if (issue.reading_time && typeof issue.reading_time === 'number' && issue.reading_time > 0) {
     return `${issue.reading_time} min read`
   }
-  return '5 min read'
+  return null
 }
 
 async function getIssues() {
@@ -70,9 +70,13 @@ export default async function Newsletter() {
                   <div className="flex items-center space-x-2 text-frame-gray-500 text-sm">
                     <Calendar className="h-4 w-4" />
                     <span>{getDisplayDate(featured)}</span>
-                    <span>•</span>
-                    <Clock className="h-4 w-4" />
-                    <span>{getReadingTime(featured)}</span>
+                    {getReadingTime(featured) && (
+                      <>
+                        <span>•</span>
+                        <Clock className="h-4 w-4" />
+                        <span>{getReadingTime(featured)}</span>
+                      </>
+                    )}
                   </div>
                   <span className="bg-frame-blue text-white px-3 py-1 rounded-full text-sm font-medium">
                     Featured
@@ -108,9 +112,13 @@ export default async function Newsletter() {
                   <div className="flex items-center space-x-2 text-frame-gray-500 text-sm mb-4">
                     <Calendar className="h-4 w-4" />
                     <span>{getDisplayDate(issue)}</span>
-                    <span>•</span>
-                    <Clock className="h-4 w-4" />
-                    <span>{getReadingTime(issue)}</span>
+                    {getReadingTime(issue) && (
+                      <>
+                        <span>•</span>
+                        <Clock className="h-4 w-4" />
+                        <span>{getReadingTime(issue)}</span>
+                      </>
+                    )}
                   </div>
                   <h3 className="text-xl font-bold text-frame-gray-900 mb-3">
                     {issue.title}

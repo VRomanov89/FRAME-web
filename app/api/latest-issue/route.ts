@@ -29,7 +29,7 @@ export async function GET() {
         title: latestPost.title,
         preview_text: latestPost.preview_text || '',
         publish_date: latestPost.publish_date,
-        reading_time: latestPost.reading_time,
+        reading_time: latestPost.reading_time && typeof latestPost.reading_time === 'number' && latestPost.reading_time > 0 ? latestPost.reading_time : undefined,
         slug: latestPost.slug
       })
     }
@@ -39,7 +39,7 @@ export async function GET() {
       title: "The Hidden Costs of Legacy System Obsolescence",
       preview_text: "Why your aging control systems are costing more than you think, and how to build a realistic modernization roadmap that actually works.",
       publish_date: Math.floor(Date.now() / 1000),
-      reading_time: 8,
+      reading_time: undefined,
       slug: ""
     })
 
@@ -51,7 +51,7 @@ export async function GET() {
       title: "The Hidden Costs of Legacy System Obsolescence",
       preview_text: "Why your aging control systems are costing more than you think, and how to build a realistic modernization roadmap that actually works.",
       publish_date: Math.floor(Date.now() / 1000),
-      reading_time: 8,
+      reading_time: undefined,
       slug: ""
     })
   }

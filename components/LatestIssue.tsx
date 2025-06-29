@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Calendar, ArrowRight } from 'lucide-react'
+import { Calendar, ArrowRight, Clock } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 interface BeehiivPost {
@@ -9,7 +9,7 @@ interface BeehiivPost {
   title: string
   preview_text: string
   publish_date: number
-  reading_time: number
+  reading_time?: number
   slug: string
 }
 
@@ -40,7 +40,7 @@ const LatestIssue = () => {
     title: "The Hidden Costs of Legacy System Obsolescence",
     preview_text: "Why your aging control systems are costing more than you think, and how to build a realistic modernization roadmap that actually works.",
     publish_date: Math.floor(Date.now() / 1000),
-    reading_time: 8,
+    reading_time: undefined,
     slug: ""
   }
 
@@ -56,6 +56,9 @@ const LatestIssue = () => {
       })
     }
   }
+
+  // Check if reading time is valid
+  const hasValidReadingTime = issue.reading_time && typeof issue.reading_time === 'number' && issue.reading_time > 0
 
   if (loading) {
     return (
@@ -76,8 +79,13 @@ const LatestIssue = () => {
         <div className="flex items-center space-x-2 text-frame-gray-500 text-sm">
           <Calendar className="h-4 w-4" />
           <span>{publishDate}</span>
-          <span>•</span>
-          <span>{issue.reading_time} min read</span>
+          {hasValidReadingTime && (
+            <>
+              <span>•</span>
+              <Clock className="h-4 w-4" />
+              <span>{issue.reading_time} min read</span>
+            </>
+          )}
         </div>
         <span className="bg-frame-blue/10 text-frame-blue px-3 py-1 rounded-full text-sm font-medium">
           Latest Issue
