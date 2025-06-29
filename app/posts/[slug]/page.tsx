@@ -25,12 +25,13 @@ async function getIssueBySlug(slug: string): Promise<BeehiivIssue | null> {
   const data = await res.json()
   const issue = data.data.find((post: any) => post.slug === slug)
   if (!issue) return null
+  const html = issue.html || issue.body_html || issue.content || ''
   return {
     id: issue.id,
     title: issue.title,
     slug: issue.slug,
-    html: issue.html || issue.body_html || '',
-    published_at: issue.published_at,
+    html,
+    published_at: issue.published_at || issue.created_at || issue.updated_at || '',
     excerpt: issue.excerpt || '',
   }
 }
