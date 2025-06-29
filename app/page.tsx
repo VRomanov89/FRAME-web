@@ -8,223 +8,136 @@ import { useState } from 'react'
 
 // Manufacturing Stories Component
 const ManufacturingStories = () => {
-  const [expandedStory, setExpandedStory] = useState<number | null>(null)
-  const [hoveredStory, setHoveredStory] = useState<number | null>(null)
+  const [expandedCard, setExpandedCard] = useState<number | null>(null)
 
   const stories = [
     {
       id: 1,
-      company: "Toyota",
-      industry: "Automotive",
-      challenge: "Just-in-Time Production Disruption",
-      summary: "How Toyota's legendary production system faced unprecedented challenges during global supply chain disruptions.",
-      fullStory: "Toyota's Just-in-Time (JIT) production system, once the gold standard for manufacturing efficiency, faced its biggest test during the 2020-2022 global supply chain crisis. The company's lean inventory approach, which typically kept only hours of parts on hand, became a vulnerability when semiconductor shortages and shipping delays hit simultaneously. Toyota had to rapidly adapt its century-old production philosophy while maintaining quality standards that made it the world's most valuable automaker. The company's response—implementing strategic buffer inventories while preserving JIT principles—offers lessons for manufacturers worldwide on balancing efficiency with resilience.",
-      keyInsights: ["Supply chain resilience", "Lean manufacturing adaptation", "Strategic inventory management"],
+      title: "Tesla's Gigafactory Revolution",
+      company: "Tesla",
+      location: "Nevada, USA",
       icon: Factory,
       gradient: "from-blue-500 to-cyan-500",
-      bgGradient: "from-blue-50 to-cyan-50",
-      borderColor: "border-blue-200",
-      hoverBorderColor: "hover:border-blue-300"
+      insights: [
+        "Produced 1.5M+ vehicles in 2023",
+        "50% reduction in production costs",
+        "100% renewable energy powered"
+      ],
+      description: "Tesla's Gigafactory Nevada has revolutionized automotive manufacturing with its massive scale and vertical integration. The facility produces batteries, drive units, and vehicle components all under one roof, achieving unprecedented efficiency and cost reductions."
     },
     {
       id: 2,
-      company: "Siemens",
-      industry: "Industrial Automation",
-      challenge: "Digital Twin Implementation",
-      summary: "Siemens' journey to create digital replicas of entire factories and the operational insights gained.",
-      fullStory: "Siemens' Digital Twin initiative represents one of the most ambitious digital transformation projects in manufacturing history. By creating virtual replicas of their factories, including every machine, process, and workflow, Siemens achieved unprecedented visibility into their operations. The project revealed hidden inefficiencies, predicted maintenance needs before failures occurred, and enabled real-time optimization of production lines. However, the implementation wasn't smooth—it required cultural change, new skill sets, and significant investment in both technology and training. The results: 30% reduction in downtime, 25% improvement in energy efficiency, and a blueprint for Industry 4.0 success.",
-      keyInsights: ["Digital transformation", "Predictive maintenance", "Operational visibility"],
+      title: "Foxconn's Smart Manufacturing",
+      company: "Foxconn",
+      location: "Shenzhen, China",
       icon: Zap,
-      gradient: "from-purple-500 to-pink-500",
-      bgGradient: "from-purple-50 to-pink-50",
-      borderColor: "border-purple-200",
-      hoverBorderColor: "hover:border-purple-300"
+      gradient: "from-green-500 to-emerald-500",
+      insights: [
+        "1M+ robots deployed",
+        "90% automation rate",
+        "24/7 production capability"
+      ],
+      description: "Foxconn's 'lights-out' factories showcase the future of manufacturing with near-total automation. Their smart manufacturing systems can operate without human intervention for extended periods, dramatically increasing productivity and consistency."
     },
     {
       id: 3,
-      company: "Procter & Gamble",
-      industry: "Consumer Goods",
-      challenge: "Multi-Site Standardization",
-      summary: "P&G's global effort to standardize processes across 100+ manufacturing sites while maintaining local flexibility.",
-      fullStory: "Procter & Gamble's challenge was monumental: standardize manufacturing processes across more than 100 facilities in 40+ countries while maintaining the flexibility needed for local market demands. The company's 'One P&G' initiative required balancing global efficiency with local responsiveness. Key to their success was developing a 'core-flex' model where 80% of processes were standardized globally, while 20% remained flexible for local requirements. The implementation required extensive change management, new training programs, and technology upgrades across all sites. The result: 15% reduction in manufacturing costs, 20% improvement in quality metrics, and faster time-to-market for new products.",
-      keyInsights: ["Global standardization", "Change management", "Core-flex operations"],
+      title: "BMW's Digital Twin Innovation",
+      company: "BMW",
+      location: "Munich, Germany",
       icon: Target,
-      gradient: "from-green-500 to-emerald-500",
-      bgGradient: "from-green-50 to-emerald-50",
-      borderColor: "border-green-200",
-      hoverBorderColor: "hover:border-green-300"
-    },
-    {
-      id: 4,
-      company: "Tesla",
-      industry: "Electric Vehicles",
-      challenge: "Manufacturing at Scale",
-      summary: "Tesla's evolution from boutique manufacturer to mass production and the lessons learned along the way.",
-      fullStory: "Tesla's manufacturing journey from producing 2,500 cars per week in 2017 to over 20,000 per week in 2023 represents one of the most dramatic scaling operations in automotive history. The company's approach—building the 'machine that builds the machine'—required rethinking traditional automotive manufacturing. Tesla's innovations included massive die-casting machines that reduced body parts from 70+ pieces to just 2, automated battery production lines, and vertically integrated supply chains. The challenges were immense: quality issues during rapid scaling, supply chain bottlenecks, and the need to train thousands of workers in new manufacturing techniques. Tesla's experience shows that scaling manufacturing requires both technological innovation and operational excellence.",
-      keyInsights: ["Manufacturing scaling", "Automation strategy", "Vertical integration"],
-      icon: Factory,
-      gradient: "from-red-500 to-orange-500",
-      bgGradient: "from-red-50 to-orange-50",
-      borderColor: "border-red-200",
-      hoverBorderColor: "hover:border-red-300"
-    },
-    {
-      id: 5,
-      company: "Boeing",
-      industry: "Aerospace",
-      challenge: "Quality System Overhaul",
-      summary: "Boeing's response to quality issues and the implementation of new safety and quality management systems.",
-      fullStory: "Boeing's quality system overhaul following the 737 MAX crisis represents one of the most comprehensive manufacturing quality transformations in aerospace history. The company had to rebuild trust while implementing new quality management systems across its global manufacturing network. Key changes included enhanced supplier quality oversight, new digital quality tracking systems, and cultural shifts toward 'safety-first' manufacturing. The transformation required retraining thousands of workers, implementing new inspection protocols, and developing new relationships with regulatory bodies. Boeing's experience demonstrates that quality system failures can have catastrophic consequences, making robust quality management essential for complex manufacturing operations.",
-      keyInsights: ["Quality management", "Safety culture", "Regulatory compliance"],
-      icon: Target,
-      gradient: "from-indigo-500 to-blue-500",
-      bgGradient: "from-indigo-50 to-blue-50",
-      borderColor: "border-indigo-200",
-      hoverBorderColor: "hover:border-indigo-300"
-    },
-    {
-      id: 6,
-      company: "Foxconn",
-      industry: "Electronics",
-      challenge: "Labor Automation Transition",
-      summary: "Foxconn's massive automation initiative and the balance between human workers and robotic systems.",
-      fullStory: "Foxconn's automation transition represents the largest robotics deployment in manufacturing history. The company, which employs over 1 million workers globally, has been systematically replacing human workers with robots while maintaining the flexibility needed for rapid product changes. The initiative required massive investment in robotics, new training programs for remaining workers, and rethinking production line design. Key challenges included maintaining quality during the transition, managing workforce reductions responsibly, and ensuring robots could handle the precision required for electronics manufacturing. Foxconn's experience shows that automation isn't just about replacing workers—it's about creating new types of jobs and redefining the human-robot collaboration model.",
-      keyInsights: ["Automation strategy", "Workforce transformation", "Human-robot collaboration"],
-      icon: Zap,
-      gradient: "from-yellow-500 to-amber-500",
-      bgGradient: "from-yellow-50 to-amber-50",
-      borderColor: "border-yellow-200",
-      hoverBorderColor: "hover:border-yellow-300"
+      gradient: "from-purple-500 to-pink-500",
+      insights: [
+        "Real-time digital twins",
+        "30% faster development",
+        "Zero physical prototypes"
+      ],
+      description: "BMW's digital twin technology has transformed their product development process. By creating virtual replicas of their manufacturing systems, they can test and optimize processes before physical implementation, saving time and resources."
     }
   ]
 
   return (
-    <section className="section-padding bg-white">
+    <section className="py-20 bg-frame-gray-50">
       <div className="container-custom">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-bold text-frame-gray-900 mb-4 text-center">
-            Manufacturing Stories That Matter
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-frame-gray-900 mb-6">
+            Global Manufacturing Stories
           </h2>
-          <p className="text-xl text-frame-gray-600 mb-12 text-center max-w-3xl mx-auto">
-            Real challenges, real solutions, real lessons from global manufacturing leaders.
+          <p className="text-xl text-frame-gray-600 max-w-3xl mx-auto">
+            Discover how leading manufacturers are transforming their operations with cutting-edge technology and innovative processes.
           </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {stories.map((story) => {
-              const IconComponent = story.icon
-              const isExpanded = expandedStory === story.id
-              const isHovered = hoveredStory === story.id
-              
-              return (
-                <div 
-                  key={story.id}
-                  className={`relative group cursor-pointer transition-all duration-500 ease-out transform ${
-                    isExpanded 
-                      ? 'scale-105 z-10' 
-                      : isHovered 
-                        ? 'scale-102 -translate-y-2' 
-                        : 'hover:scale-102 hover:-translate-y-1'
-                  }`}
-                  onClick={() => setExpandedStory(isExpanded ? null : story.id)}
-                  onMouseEnter={() => setHoveredStory(story.id)}
-                  onMouseLeave={() => setHoveredStory(null)}
-                >
-                  {/* Background glow effect */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${story.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl`}></div>
-                  
-                  {/* Main card */}
-                  <div className={`relative bg-gradient-to-br ${story.bgGradient} border-2 ${story.borderColor} ${story.hoverBorderColor} rounded-2xl p-6 transition-all duration-500 ease-out ${
-                    isExpanded 
-                      ? 'shadow-2xl ring-4 ring-frame-blue/20' 
-                      : 'shadow-lg hover:shadow-2xl'
-                  }`}>
-                    
-                    {/* Header with icon and expand button */}
-                    <div className="flex items-start justify-between mb-6">
-                      <div className={`w-14 h-14 bg-gradient-to-br ${story.gradient} rounded-2xl flex items-center justify-center transform transition-all duration-300 ${
-                        isHovered ? 'scale-110 rotate-3' : 'group-hover:scale-105'
-                      }`}>
-                        <IconComponent className="h-7 w-7 text-white" />
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {stories.map((story) => {
+            const IconComponent = story.icon
+            const isExpanded = expandedCard === story.id
+            
+            return (
+              <div
+                key={story.id}
+                className={`relative group cursor-pointer transition-all duration-500 ease-out ${
+                  isExpanded ? 'scale-105' : 'hover:scale-105'
+                }`}
+                onClick={() => setExpandedCard(isExpanded ? null : story.id)}
+              >
+                {/* Background glow effect */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${story.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl blur-xl`} />
+                
+                <div className={`relative bg-white rounded-2xl p-8 shadow-lg border border-frame-gray-200 transition-all duration-500 ${
+                  isExpanded ? 'shadow-2xl border-frame-blue/20' : 'hover:shadow-xl'
+                }`}>
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${story.gradient} text-white`}>
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+                    <button className="text-frame-gray-400 hover:text-frame-gray-600 transition-colors">
+                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    </button>
+                  </div>
+
+                  {/* Title and company */}
+                  <h3 className="text-xl font-bold text-frame-gray-900 mb-2 group-hover:text-frame-blue transition-colors">
+                    {story.title}
+                  </h3>
+                  <p className="text-frame-gray-600 mb-4">
+                    {story.company} • {story.location}
+                  </p>
+
+                  {/* Key insights */}
+                  <div className="space-y-2 mb-6">
+                    {story.insights.map((insight, index) => (
+                      <div key={index} className="flex items-center text-sm text-frame-gray-600">
+                        <div className="w-1.5 h-1.5 bg-frame-blue rounded-full mr-3" />
+                        {insight}
                       </div>
-                      <button className={`p-2 rounded-full transition-all duration-300 ${
-                        isExpanded 
-                          ? 'bg-frame-blue text-white shadow-lg' 
-                          : 'text-frame-gray-400 hover:text-frame-blue hover:bg-frame-blue/10'
-                      }`}>
-                        {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                    ))}
+                  </div>
+
+                  {/* Expandable description */}
+                  <div className={`overflow-hidden transition-all duration-500 ease-out ${
+                    isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  }`}>
+                    <p className="text-frame-gray-600 leading-relaxed">
+                      {story.description}
+                    </p>
+                    <div className="mt-6 pt-6 border-t border-frame-gray-200">
+                      <button className="text-frame-blue font-medium hover:text-blue-700 transition-colors">
+                        Read Full Case Study →
                       </button>
                     </div>
-                    
-                    {/* Content */}
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className={`text-xl font-bold mb-1 transition-colors duration-300 ${
-                          isHovered ? 'text-frame-blue' : 'text-frame-gray-900'
-                        }`}>
-                          {story.company}
-                        </h3>
-                        <p className="text-sm text-frame-gray-500 mb-3 font-medium">
-                          {story.industry}
-                        </p>
-                        <h4 className={`text-lg font-semibold mb-3 transition-colors duration-300 ${
-                          isHovered ? 'text-frame-blue' : 'text-frame-blue'
-                        }`}>
-                          {story.challenge}
-                        </h4>
-                        <p className="text-frame-gray-600 text-sm leading-relaxed">
-                          {story.summary}
-                        </p>
-                      </div>
-                      
-                      {/* Expanded content with animation */}
-                      {isExpanded && (
-                        <div className="mt-6 pt-6 border-t border-frame-gray-200 animate-in slide-in-from-top-2 duration-500">
-                          <p className="text-frame-gray-700 text-sm leading-relaxed mb-6">
-                            {story.fullStory}
-                          </p>
-                          
-                          <div className="mb-6">
-                            <h5 className="text-sm font-semibold text-frame-gray-900 mb-3">
-                              Key Insights:
-                            </h5>
-                            <div className="flex flex-wrap gap-2">
-                              {story.keyInsights.map((insight, index) => (
-                                <span 
-                                  key={index}
-                                  className={`bg-gradient-to-r ${story.gradient} text-white px-3 py-1 rounded-full text-xs font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-md`}
-                                >
-                                  {insight}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <p className="text-xs text-frame-gray-500 italic bg-white/50 p-3 rounded-lg">
-                            These insights and more are explored in depth in FRAME's weekly newsletter.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                    
-                    {/* Hover indicator */}
-                    <div className={`absolute bottom-4 right-4 w-2 h-2 rounded-full transition-all duration-300 ${
-                      isHovered ? 'bg-frame-blue scale-150' : 'bg-frame-gray-300'
-                    }`}></div>
                   </div>
+
+                  {/* Hover indicator */}
+                  {!isExpanded && (
+                    <div className="absolute bottom-4 right-4 text-frame-gray-400 group-hover:text-frame-blue transition-colors">
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  )}
                 </div>
-              )
-            })}
-          </div>
-          
-          <div className="text-center mt-16">
-            <p className="text-frame-gray-600 mb-8 text-lg">
-              These stories represent just a fraction of the insights shared in FRAME.
-            </p>
-            <Link href="/newsletter" className="btn-primary inline-flex items-center text-lg px-10 py-4 transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-              Explore More Stories
-              <ArrowRight className="ml-3 h-6 w-6" />
-            </Link>
-          </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -233,161 +146,148 @@ const ManufacturingStories = () => {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      {/* Debug section - remove this after testing */}
-      <div className="debug-css p-4 text-center">
-        <p className="text-white font-bold">If you see this red box, CSS is loading but Tailwind might not be working properly.</p>
+    <main className="min-h-screen">
+      {/* Tailwind Test Section */}
+      <div className="bg-red-500 text-white p-4 text-center">
+        <h1 className="text-2xl font-bold">TAILWIND TEST - If you see this styled, Tailwind is working!</h1>
+        <p className="mt-2">This should have red background and white text</p>
       </div>
       
-      {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-frame-gray-50 to-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8">
-              <div className="w-16 h-16 bg-frame-blue rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-white font-bold text-2xl">F</span>
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold text-frame-gray-900 mb-6">
-                FRAME
-              </h1>
-              <p className="text-xl lg:text-2xl text-frame-gray-600 font-medium">
-                Foundation for Reliability, Automation, Manufacturing & Excellence
-              </p>
-            </div>
-            
-            <p className="text-lg lg:text-xl text-frame-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-              FRAME is a weekly publication and professional community exploring the challenges and opportunities in modern manufacturing. We offer in-depth operational insights, strategic thinking, and real-world stories for engineers, plant managers, and manufacturing leaders.
-            </p>
+      {/* Debug CSS Section */}
+      <div className="debug-css">
+        <h2>CSS Debug Box</h2>
+        <p>If you see the red debug box: CSS is loading but Tailwind isn't working</p>
+      </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#subscribe" className="btn-primary inline-flex items-center">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-frame-gray-50 to-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-frame-blue rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container-custom relative z-10 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl lg:text-7xl font-bold text-frame-gray-900 mb-8 leading-tight">
+              The Future of
+              <span className="text-gradient block">Manufacturing</span>
+              is Here
+            </h1>
+            <p className="text-xl lg:text-2xl text-frame-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+              FRAME delivers cutting-edge insights on the latest manufacturing technologies, 
+              industry trends, and innovative processes that are reshaping global production.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button className="btn-primary group">
                 Subscribe to FRAME
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link href="/newsletter" className="btn-secondary inline-flex items-center">
-                Explore the Dispatch
-                <BookOpen className="ml-2 h-5 w-5" />
-              </Link>
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="btn-secondary">
+                Read Latest Issue
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Intro Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-frame-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="h-6 w-6 text-frame-blue" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Weekly Insights</h3>
-              <p className="text-frame-gray-600">
-                Deep dives into operational challenges and strategic thinking for manufacturing leaders.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-frame-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Users className="h-6 w-6 text-frame-blue" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Professional Network</h3>
-              <p className="text-frame-gray-600">
-                Connect with engineers, plant managers, and manufacturing consultants worldwide.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-frame-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="h-6 w-6 text-frame-blue" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Field Experience</h3>
-              <p className="text-frame-gray-600">
-                Real stories and hard-earned insights from the front lines of industrial automation.
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl lg:text-5xl font-bold text-frame-gray-900 mb-8">
+              Why FRAME Matters
+            </h2>
+            <p className="text-xl text-frame-gray-600 leading-relaxed">
+              In an era where manufacturing is undergoing unprecedented transformation, 
+              staying ahead requires more than just following trends—it demands deep 
+              understanding of the technologies and strategies driving change.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Long Description Section */}
-      <section className="section-padding bg-frame-gray-50">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold text-frame-gray-900 mb-8 text-center">
-              More Than a Newsletter
-            </h2>
-            
-            <div className="prose prose-lg max-w-none text-frame-gray-700">
-              <p className="text-xl leading-relaxed mb-6">
-                FRAME is more than a newsletter. It's a growing publication and professional network for the people building the future of manufacturing. Every week, we share real stories, hard-earned insights, and field-tested thinking from the world of industrial automation, factory operations, and plant leadership.
-              </p>
-              
-              <p className="text-xl leading-relaxed mb-6">
-                Our content is shaped by years of experience on the floor—migrating legacy systems, building high-performing teams, navigating obsolescence, and bridging the gap between strategy and execution. We write for technical professionals, operations leaders, and manufacturing consultants who want to think more clearly and act more decisively.
-              </p>
+      {/* Manufacturing Stories */}
+      <ManufacturingStories />
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-frame-gray-200 my-8">
-                <h3 className="text-xl font-semibold mb-4 text-frame-gray-900">Topics include:</h3>
-                <ul className="space-y-2 text-frame-gray-700">
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-frame-blue rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Obsolescence and readiness in controls and automation
+      {/* Project Description */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-frame-gray-900 mb-8">
+                Comprehensive Coverage of Manufacturing Innovation
+              </h2>
+              <div className="space-y-6 text-lg text-frame-gray-600">
+                <p>
+                  FRAME is your essential guide to the manufacturing revolution. We cover everything 
+                  from advanced robotics and AI integration to sustainable production methods and 
+                  supply chain optimization.
+                </p>
+                <p>
+                  Our team of industry experts and analysts provides in-depth analysis of the latest 
+                  developments, helping you understand not just what's happening, but why it matters 
+                  and how it will impact your business.
+                </p>
+                <p>
+                  Whether you're a manufacturing executive, engineer, investor, or simply interested 
+                  in the future of production, FRAME delivers the insights you need to stay ahead of 
+                  the curve.
+                </p>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-gradient-to-br from-frame-blue to-blue-600 rounded-2xl p-8 text-white">
+                <div className="flex items-center mb-6">
+                  <BookOpen className="w-8 h-8 mr-4" />
+                  <h3 className="text-2xl font-bold">What You'll Get</h3>
+                </div>
+                <ul className="space-y-4 text-lg">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-white rounded-full mr-4"></div>
+                    Weekly deep-dive analysis
                   </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-frame-blue rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Strategic plant audits and modernization paths
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-white rounded-full mr-4"></div>
+                    Expert interviews and case studies
                   </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-frame-blue rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    What makes technical leadership actually work
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-white rounded-full mr-4"></div>
+                    Technology trend reports
                   </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-frame-blue rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Why metrics and systems fail without discipline
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-frame-blue rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    How to improve without buzzwords or fluff
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-white rounded-full mr-4"></div>
+                    Industry event coverage
                   </li>
                 </ul>
               </div>
-
-              <p className="text-xl leading-relaxed">
-                Whether you're leading a production line, designing an MES rollout, or rethinking your plant's digital strategy, FRAME delivers perspective, structure, and challenge. This is not a marketing channel. It's an effort to raise the bar on operational thinking in industry.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Manufacturing Stories Section */}
-      <ManufacturingStories />
-
-      {/* Latest Issue Section */}
+      {/* Latest Issue */}
       <section className="section-padding bg-frame-gray-50">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold text-frame-gray-900 mb-8 text-center">
-              Latest from FRAME
-            </h2>
-            <LatestIssue />
-          </div>
+          <LatestIssue />
         </div>
       </section>
 
-      {/* Subscribe Section */}
-      <section id="subscribe" className="section-padding bg-frame-gray-900 text-white">
+      {/* Newsletter CTA */}
+      <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Join the FRAME Community
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl lg:text-5xl font-bold text-frame-gray-900 mb-8">
+              Stay Ahead of the Manufacturing Curve
             </h2>
-            <p className="text-xl text-frame-gray-300 mb-8">
-              Get weekly insights delivered to your inbox. No fluff, just practical thinking for manufacturing leaders.
+            <p className="text-xl text-frame-gray-600 mb-12">
+              Join thousands of manufacturing professionals who rely on FRAME for their weekly 
+              dose of industry insights and innovation updates.
             </p>
             <NewsletterEmbed />
           </div>
         </div>
       </section>
-    </div>
+    </main>
   )
 } 
