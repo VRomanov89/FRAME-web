@@ -52,11 +52,19 @@ export default async function IssuePage({ params }: { params: { slug: string } }
   const issue = await getIssueBySlug(params.slug)
   if (!issue) return notFound()
 
+  let displayDate = 'Unpublished'
+  if (issue.published_at) {
+    const parsed = new Date(issue.published_at)
+    if (!isNaN(parsed.getTime())) {
+      displayDate = parsed.toLocaleDateString()
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white py-12">
       <div className="container-custom max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-4 text-frame-gray-900">{issue.title}</h1>
-        <p className="text-frame-gray-500 mb-8">{new Date(issue.published_at).toLocaleDateString()}</p>
+        <p className="text-frame-gray-500 mb-8">{displayDate}</p>
         <article className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: issue.html }} />
       </div>
     </div>
