@@ -11,6 +11,16 @@
   
   body {
     font-family: 'Inter', system-ui, sans-serif;
+    background-color: white;
+    color: #171717;
+  }
+
+  /* Debug styles to verify CSS is loading */
+  .debug-css {
+    background-color: red !important;
+    color: white !important;
+    padding: 10px !important;
+    border: 2px solid blue !important;
   }
 }
 
@@ -34,4 +44,21 @@
   .text-gradient {
     @apply bg-gradient-to-r from-frame-blue to-blue-600 bg-clip-text text-transparent;
   }
+}
+
+/* Force some basic styles in case Tailwind isn't loading */
+.frame-blue {
+  background-color: #0066FF !important;
+}
+
+.frame-gray-900 {
+  background-color: #171717 !important;
+}
+
+.frame-gray-600 {
+  color: #525252 !important;
+}
+
+.frame-gray-50 {
+  background-color: #fafafa !important;
 } 

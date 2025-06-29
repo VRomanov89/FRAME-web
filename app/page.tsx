@@ -234,6 +234,11 @@ const ManufacturingStories = () => {
 export default function Home() {
   return (
     <div className="min-h-screen">
+      {/* Debug section - remove this after testing */}
+      <div className="debug-css p-4 text-center">
+        <p className="text-white font-bold">If you see this red box, CSS is loading but Tailwind might not be working properly.</p>
+      </div>
+      
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-frame-gray-50 to-white">
         <div className="container-custom">
