@@ -1,5 +1,6 @@
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import NewsletterEmbed from '@/components/NewsletterEmbed'
 
 function getDisplayDate(issue: any) {
   const dateFields = ['publish_date', 'displayed_date', 'created']
@@ -12,6 +13,13 @@ function getDisplayDate(issue: any) {
     }
   }
   return 'Unpublished'
+}
+
+function getReadingTime(issue: any) {
+  if (issue.reading_time && Number(issue.reading_time) > 0) {
+    return `${issue.reading_time} min read`
+  }
+  return '5 min read'
 }
 
 async function getIssues() {
@@ -44,6 +52,9 @@ export default async function Newsletter() {
             <p className="text-xl lg:text-2xl text-frame-gray-600 leading-relaxed mb-8">
               Weekly insights, strategic thinking, and real-world stories for manufacturing leaders.
             </p>
+            <div className="max-w-md mx-auto mt-8">
+              <NewsletterEmbed />
+            </div>
           </div>
         </div>
       </section>
@@ -61,7 +72,7 @@ export default async function Newsletter() {
                     <span>{getDisplayDate(featured)}</span>
                     <span>•</span>
                     <Clock className="h-4 w-4" />
-                    <span>{featured.reading_time ? `${featured.reading_time} min read` : '5 min read'}</span>
+                    <span>{getReadingTime(featured)}</span>
                   </div>
                   <span className="bg-frame-blue text-white px-3 py-1 rounded-full text-sm font-medium">
                     Featured
@@ -99,7 +110,7 @@ export default async function Newsletter() {
                     <span>{getDisplayDate(issue)}</span>
                     <span>•</span>
                     <Clock className="h-4 w-4" />
-                    <span>{issue.reading_time ? `${issue.reading_time} min read` : '5 min read'}</span>
+                    <span>{getReadingTime(issue)}</span>
                   </div>
                   <h3 className="text-xl font-bold text-frame-gray-900 mb-3">
                     {issue.title}
