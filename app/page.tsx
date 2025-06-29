@@ -3,41 +3,40 @@
 import { ArrowRight, BookOpen, Users, TrendingUp, ChevronDown, ChevronUp, Factory, Zap, Target, Cpu, Globe, Shield, Gauge, Lightbulb } from 'lucide-react'
 import NewsletterEmbed from '@/components/NewsletterEmbed'
 import LatestIssue from '@/components/LatestIssue'
-import SignupPopup from '@/components/SignupPopup'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 // Manufacturing Stories Component
 const ManufacturingStories = () => {
-  const [expandedCard, setExpandedCard] = useState<number | null>(null)
+  const [expandedStory, setExpandedStory] = useState<number | null>(null)
 
   const stories = [
     {
       id: 1,
       title: "Tesla's Gigafactory Revolution",
       company: "Tesla",
-      location: "Nevada, USA",
-      icon: Factory,
-      gradient: "from-blue-500 to-cyan-500",
+      location: "Austin, Texas",
+      icon: Target,
+      gradient: "from-green-500 to-emerald-500",
       insights: [
-        "Produced 1.5M+ vehicles in 2023",
-        "50% reduction in production costs",
-        "100% renewable energy powered"
+        "Massive scale automation",
+        "Vertical integration",
+        "Real-time data analytics"
       ],
-      description: "Tesla's Gigafactory Nevada has revolutionized automotive manufacturing with its massive scale and vertical integration. The facility produces batteries, drive units, and vehicle components all under one roof, achieving unprecedented efficiency and cost reductions through innovative automation and sustainable energy practices."
+      description: "Tesla's Gigafactory represents the future of automotive manufacturing, combining massive scale with cutting-edge automation. Their approach to vertical integration and real-time data analytics has set new standards for efficiency and innovation in the industry."
     },
     {
       id: 2,
-      title: "Foxconn's Smart Manufacturing",
-      company: "Foxconn",
-      location: "Shenzhen, China",
-      icon: Zap,
-      gradient: "from-green-500 to-emerald-500",
+      title: "Bosch's Industry 4.0 Leadership",
+      company: "Bosch",
+      location: "Stuttgart, Germany",
+      icon: Gauge,
+      gradient: "from-blue-500 to-indigo-500",
       insights: [
-        "1M+ robots deployed",
-        "90% automation rate",
-        "24/7 production capability"
+        "Smart factory networks",
+        "Predictive maintenance",
+        "Digital twin technology"
       ],
-      description: "Foxconn's 'lights-out' factories showcase the future of manufacturing with near-total automation. Their smart manufacturing systems can operate without human intervention for extended periods, dramatically increasing productivity and consistency while maintaining the flexibility needed for rapid product changes."
+      description: "Bosch has been at the forefront of Industry 4.0 implementation, creating interconnected smart factory networks that leverage predictive maintenance and digital twin technology. Their approach demonstrates how traditional manufacturers can successfully transform their operations."
     },
     {
       id: 3,
@@ -151,22 +150,13 @@ const ManufacturingStories = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {stories.map((story) => {
+            const isExpanded = expandedStory === story.id
             const IconComponent = story.icon
-            const isExpanded = expandedCard === story.id
             
             return (
-              <div
-                key={story.id}
-                className={`relative group cursor-pointer transition-all duration-500 ease-out ${
-                  isExpanded ? 'scale-105 z-10' : 'hover:scale-105'
-                }`}
-                onClick={() => setExpandedCard(isExpanded ? null : story.id)}
-              >
-                {/* Background glow effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${story.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl blur-xl`} />
-                
+              <div key={story.id} className="group cursor-pointer" onClick={() => setExpandedStory(isExpanded ? null : story.id)}>
                 <div className={`relative bg-white rounded-2xl p-8 shadow-lg border border-frame-gray-200 transition-all duration-500 ${
                   isExpanded ? 'shadow-2xl border-frame-blue/20' : 'hover:shadow-xl'
                 }`}>
@@ -224,17 +214,6 @@ const ManufacturingStories = () => {
 }
 
 export default function Home() {
-  const [showPopup, setShowPopup] = useState(false)
-
-  useEffect(() => {
-    // Show popup after 5 seconds
-    const timer = setTimeout(() => {
-      setShowPopup(true)
-    }, 5000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
   const scrollToNewsletter = () => {
     const newsletterSection = document.getElementById('newsletter-section')
     if (newsletterSection) {
@@ -388,9 +367,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Signup Popup */}
-      <SignupPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
     </main>
   )
 } 
