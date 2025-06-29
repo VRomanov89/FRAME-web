@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 
 interface SignupPopupProps {
@@ -9,6 +9,8 @@ interface SignupPopupProps {
 }
 
 export default function SignupPopup({ isOpen, onClose }: SignupPopupProps) {
+  const [embedLoaded, setEmbedLoaded] = useState(false)
+
   useEffect(() => {
     if (!isOpen) return
     // Load Beehiiv embed script
@@ -28,6 +30,7 @@ export default function SignupPopup({ isOpen, onClose }: SignupPopupProps) {
             }, 1000)
           }
         })
+        setEmbedLoaded(true)
       }
     }
     document.head.appendChild(script)
@@ -56,6 +59,31 @@ export default function SignupPopup({ isOpen, onClose }: SignupPopupProps) {
             </p>
           </div>
           <div id="beehiiv-popup-embed" className="w-full" />
+          {!embedLoaded && (
+            <div className="bg-white rounded-lg p-6 shadow-lg mt-4">
+              <h3 className="text-lg font-semibold text-frame-gray-900 mb-4">
+                Subscribe to FRAME
+              </h3>
+              <form action={`https://api.beehiiv.com/v2/publications/${process.env.NEXT_PUBLIC_BEEHIIV_PUBLICATION_ID}/subscriptions`} method="POST" className="space-y-4">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-3 border border-frame-gray-300 rounded-lg focus:ring-2 focus:ring-frame-blue focus:border-transparent"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-frame-blue text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+              <p className="text-xs text-frame-gray-500 mt-3">
+                No spam, unsubscribe at any time.
+              </p>
+            </div>
+          )}
         </div>
         <div className="p-6 border-t border-frame-gray-200">
           <button onClick={onClose} className="w-full text-frame-gray-500 hover:text-frame-gray-700 transition-colors">
