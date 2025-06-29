@@ -204,11 +204,6 @@ const ManufacturingStories = () => {
                     <p className="text-frame-gray-600 leading-relaxed">
                       {story.description}
                     </p>
-                    <div className="mt-6 pt-6 border-t border-frame-gray-200">
-                      <button className="text-frame-blue font-medium hover:text-blue-700 transition-colors">
-                        Read Full Case Study →
-                      </button>
-                    </div>
                   </div>
 
                   {/* Hover indicator */}

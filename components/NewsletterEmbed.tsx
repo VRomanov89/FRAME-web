@@ -26,7 +26,7 @@ const NewsletterEmbed = () => {
       const beehiiv = (window as any).beehiiv
       if (beehiiv) {
         beehiiv.init({
-          publicationId: 'pub_placeholder', // Replace with actual publication ID
+          publicationId: process.env.NEXT_PUBLIC_BEEHIIV_PUBLICATION_ID || 'pub_placeholder',
           container: '#beehiiv-embed',
           theme: 'dark'
         })
