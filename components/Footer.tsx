@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Linkedin, Twitter, Globe } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -20,31 +20,34 @@ const Footer = () => {
               Foundation for Reliability, Automation, Manufacturing & Excellence. 
               Weekly insights for manufacturing leaders and engineers.
             </p>
-            <p className="text-frame-blue font-semibold mb-4">
-              Managing Partner of FRAME
+            <p className="text-frame-gray-300 mb-4">
+              Tactical insights to grow your career and improve your factory, delivered weekly.
             </p>
             <div className="flex items-center space-x-4">
               <a
                 href="mailto:hello@frame.news"
                 className="text-frame-gray-300 hover:text-white transition-colors"
+                title="Email FRAME"
               >
                 <Mail className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com/in/vladromanov/"
+                href="https://www.linkedin.com/company/framexl"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-frame-gray-300 hover:text-white transition-colors"
+                title="Follow FRAME on LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://twitter.com/VladRomanovEng"
+                href="https://www.framexl.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-frame-gray-300 hover:text-white transition-colors"
+                title="Visit FRAME Website"
               >
-                <Twitter className="h-5 w-5" />
+                <Globe className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -95,7 +98,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-frame-gray-800 mt-8 pt-8 text-center text-frame-gray-400">
-          <p>&copy; {currentYear} FRAME. All rights reserved.</p>
+          <p>&copy; {currentYear} FRAME - Foundation for Reliability, Automation, Manufacturing & Excellence. All rights reserved.</p>
         </div>
       </div>
     </footer>

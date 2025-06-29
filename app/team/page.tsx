@@ -32,7 +32,7 @@ export default function Team() {
                     Vladimir Romanov
                   </h2>
                   <p className="text-frame-blue font-semibold mb-4">
-                    Managing Partner of FRAME
+                    Founder & Lead Contributor
                   </p>
                   
                   {/* Social Links */}
