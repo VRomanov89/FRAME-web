@@ -54,7 +54,7 @@ export default function About() {
               </p>
               
               <p className="text-xl leading-relaxed mb-8">
-                Our content is shaped by years of experience on the floor—migrating legacy systems, building high-performing teams, navigating obsolescence, and bridging the gap between strategy and execution. We write for technical professionals, operations leaders, and manufacturing consultants who want to think more clearly and act more decisively.
+                Our content is shaped by years of experience on the floor. We've migrated legacy systems, built high-performing teams, navigated obsolescence, and bridged the gap between strategy and execution. We write for technical professionals, operations leaders, and manufacturing consultants who want to think more clearly and act more decisively.
               </p>
 
               <div className="bg-frame-gray-50 p-8 rounded-2xl my-8">

@@ -79,7 +79,7 @@ export default function Team() {
                   </p>
                   
                   <p className="text-xl leading-relaxed mb-6">
-                    His experience spans the full spectrum of manufacturing challenges—from legacy system obsolescence to digital transformation initiatives, from technical team building to strategic plant modernization. This hands-on experience in the field shapes every piece of content and insight shared through FRAME.
+                    His experience spans the full spectrum of manufacturing challenges. From legacy system obsolescence to digital transformation initiatives, from technical team building to strategic plant modernization. This hands-on experience in the field shapes every piece of content and insight shared through FRAME.
                   </p>
 
                   <div className="bg-frame-gray-50 p-8 rounded-2xl my-8">

@@ -1,7 +1,6 @@
 'use client'
 
-import Link from 'next/link'
-import { ArrowRight, BookOpen, Users, TrendingUp, ChevronDown, ChevronUp, Factory, Zap, Target } from 'lucide-react'
+import { ArrowRight, BookOpen, Users, TrendingUp, ChevronDown, ChevronUp, Factory, Zap, Target, Cpu, Globe, Shield, Gauge, Lightbulb } from 'lucide-react'
 import NewsletterEmbed from '@/components/NewsletterEmbed'
 import LatestIssue from '@/components/LatestIssue'
 import { useState } from 'react'
@@ -23,7 +22,7 @@ const ManufacturingStories = () => {
         "50% reduction in production costs",
         "100% renewable energy powered"
       ],
-      description: "Tesla's Gigafactory Nevada has revolutionized automotive manufacturing with its massive scale and vertical integration. The facility produces batteries, drive units, and vehicle components all under one roof, achieving unprecedented efficiency and cost reductions."
+      description: "Tesla's Gigafactory Nevada has revolutionized automotive manufacturing with its massive scale and vertical integration. The facility produces batteries, drive units, and vehicle components all under one roof, achieving unprecedented efficiency and cost reductions through innovative automation and sustainable energy practices."
     },
     {
       id: 2,
@@ -37,7 +36,7 @@ const ManufacturingStories = () => {
         "90% automation rate",
         "24/7 production capability"
       ],
-      description: "Foxconn's 'lights-out' factories showcase the future of manufacturing with near-total automation. Their smart manufacturing systems can operate without human intervention for extended periods, dramatically increasing productivity and consistency."
+      description: "Foxconn's 'lights-out' factories showcase the future of manufacturing with near-total automation. Their smart manufacturing systems can operate without human intervention for extended periods, dramatically increasing productivity and consistency while maintaining the flexibility needed for rapid product changes."
     },
     {
       id: 3,
@@ -51,7 +50,91 @@ const ManufacturingStories = () => {
         "30% faster development",
         "Zero physical prototypes"
       ],
-      description: "BMW's digital twin technology has transformed their product development process. By creating virtual replicas of their manufacturing systems, they can test and optimize processes before physical implementation, saving time and resources."
+      description: "BMW's digital twin technology has transformed their product development process. By creating virtual replicas of their manufacturing systems, they can test and optimize processes before physical implementation, saving time and resources while improving quality and reducing risk."
+    },
+    {
+      id: 4,
+      title: "Toyota's Lean Evolution",
+      company: "Toyota",
+      location: "Toyota City, Japan",
+      icon: Gauge,
+      gradient: "from-red-500 to-orange-500",
+      insights: [
+        "Just-in-time production",
+        "Continuous improvement culture",
+        "Global standardization"
+      ],
+      description: "Toyota's legendary production system continues to evolve, adapting lean principles to modern challenges. Their approach to just-in-time manufacturing, combined with continuous improvement and respect for people, has created a sustainable competitive advantage that other manufacturers strive to replicate."
+    },
+    {
+      id: 5,
+      title: "Siemens' Industry 4.0 Leadership",
+      company: "Siemens",
+      location: "Munich, Germany",
+      icon: Cpu,
+      gradient: "from-indigo-500 to-blue-500",
+      insights: [
+        "Digital factory solutions",
+        "IoT integration",
+        "Predictive maintenance"
+      ],
+      description: "Siemens leads the Industry 4.0 revolution with their comprehensive digital factory solutions. Their integration of IoT, artificial intelligence, and advanced analytics enables predictive maintenance, real-time optimization, and unprecedented operational visibility across global manufacturing networks."
+    },
+    {
+      id: 6,
+      title: "GE's Additive Manufacturing",
+      company: "General Electric",
+      location: "Boston, USA",
+      icon: Lightbulb,
+      gradient: "from-yellow-500 to-amber-500",
+      insights: [
+        "3D printed jet engines",
+        "Complex part consolidation",
+        "Rapid prototyping"
+      ],
+      description: "GE Aviation has pioneered additive manufacturing in aerospace, producing complex jet engine components through 3D printing. This technology enables part consolidation, weight reduction, and rapid prototyping, fundamentally changing how we think about manufacturing complex assemblies."
+    },
+    {
+      id: 7,
+      title: "Procter & Gamble's Smart Factories",
+      company: "P&G",
+      location: "Cincinnati, USA",
+      icon: Globe,
+      gradient: "from-teal-500 to-cyan-500",
+      insights: [
+        "Global standardization",
+        "Real-time monitoring",
+        "Sustainable production"
+      ],
+      description: "P&G's smart factory initiative demonstrates how consumer goods manufacturers can achieve global standardization while maintaining local flexibility. Their real-time monitoring systems and sustainable production practices set new standards for efficiency and environmental responsibility."
+    },
+    {
+      id: 8,
+      title: "Boeing's Quality Revolution",
+      company: "Boeing",
+      location: "Seattle, USA",
+      icon: Shield,
+      gradient: "from-gray-500 to-slate-500",
+      insights: [
+        "Advanced quality systems",
+        "Digital inspection",
+        "Safety-first culture"
+      ],
+      description: "Boeing's quality system overhaul represents one of the most comprehensive manufacturing quality transformations in aerospace history. Their digital inspection technologies and safety-first culture ensure that every aircraft meets the highest standards of reliability and performance."
+    },
+    {
+      id: 9,
+      title: "Samsung's Semiconductor Excellence",
+      company: "Samsung",
+      location: "Seoul, South Korea",
+      icon: Cpu,
+      gradient: "from-blue-600 to-indigo-600",
+      insights: [
+        "Nanometer precision",
+        "Clean room technology",
+        "Mass production scale"
+      ],
+      description: "Samsung's semiconductor manufacturing represents the pinnacle of precision engineering and mass production. Their nanometer-scale manufacturing processes and clean room technologies enable the production of billions of chips annually with unprecedented levels of quality and reliability."
     }
   ]
 
@@ -76,7 +159,7 @@ const ManufacturingStories = () => {
               <div
                 key={story.id}
                 className={`relative group cursor-pointer transition-all duration-500 ease-out ${
-                  isExpanded ? 'scale-105' : 'hover:scale-105'
+                  isExpanded ? 'scale-105 z-10' : 'hover:scale-105'
                 }`}
                 onClick={() => setExpandedCard(isExpanded ? null : story.id)}
               >
@@ -147,23 +230,6 @@ const ManufacturingStories = () => {
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Basic CSS Test */}
-      <div style={{backgroundColor: 'yellow', color: 'black', padding: '10px', textAlign: 'center', fontWeight: 'bold'}}>
-        BASIC CSS TEST - If you see this yellow box, basic CSS is working!
-      </div>
-      
-      {/* Tailwind Test Section */}
-      <div className="bg-red-500 text-white p-4 text-center">
-        <h1 className="text-2xl font-bold">TAILWIND TEST - If you see this styled, Tailwind is working!</h1>
-        <p className="mt-2">This should have red background and white text</p>
-      </div>
-      
-      {/* Debug CSS Section */}
-      <div className="debug-css">
-        <h2>CSS Debug Box</h2>
-        <p>If you see the red debug box: CSS is loading but Tailwind isn't working</p>
-      </div>
-
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-frame-gray-50 to-white overflow-hidden">
         {/* Background Pattern */}
@@ -205,7 +271,7 @@ export default function Home() {
             </h2>
             <p className="text-xl text-frame-gray-600 leading-relaxed">
               In an era where manufacturing is undergoing unprecedented transformation, 
-              staying ahead requires more than just following trends—it demands deep 
+              staying ahead requires more than just following trends. It demands deep 
               understanding of the technologies and strategies driving change.
             </p>
           </div>
