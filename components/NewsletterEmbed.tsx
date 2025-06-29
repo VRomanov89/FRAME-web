@@ -23,8 +23,9 @@ const NewsletterEmbed = () => {
     script.async = true
     script.onload = () => {
       // Initialize the embed after script loads
-      if (window.beehiiv) {
-        window.beehiiv.init({
+      const beehiiv = (window as any).beehiiv
+      if (beehiiv) {
+        beehiiv.init({
           publicationId: 'pub_placeholder', // Replace with actual publication ID
           container: '#beehiiv-embed',
           theme: 'dark'
