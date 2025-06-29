@@ -7,14 +7,25 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'FRAME - Foundation for Reliability, Automation, Manufacturing & Excellence',
-  description: 'FRAME is a weekly publication and professional community exploring the challenges and opportunities in modern manufacturing. We offer in-depth operational insights, strategic thinking, and real-world stories for engineers, plant managers, and manufacturing leaders.',
+  title: 'FRAME Dispatch',
+  description: 'Foundation for Reliability, Automation, Manufacturing & Excellence - Tactical insights to grow your career and improve your factory, delivered weekly.',
   keywords: 'manufacturing, automation, operations, engineering, plant management, industrial, newsletter',
   authors: [{ name: 'Vladimir Romanov' }],
+  icons: {
+    icon: '/favicon.ico',
+  },
   openGraph: {
     title: 'FRAME - Foundation for Reliability, Automation, Manufacturing & Excellence',
     description: 'Weekly insights for manufacturing leaders and engineers',
     type: 'website',
+    images: [
+      {
+        url: '/logo.png',
+        width: 500,
+        height: 500,
+        alt: 'FRAME Logo',
+      },
+    ],
   },
 }
 

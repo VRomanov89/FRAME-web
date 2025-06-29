@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
@@ -19,11 +20,9 @@ const Header = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-frame-blue rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">F</span>
-            </div>
-            <span className="text-xl font-bold text-frame-gray-900">FRAME</span>
+          <Link href="/" className="flex items-center gap-3">
+            <Image src="/logo.png" alt="FRAME Logo" width={48} height={48} priority />
+            <span className="text-2xl font-bold text-frame-gray-900 tracking-tight">FRAME</span>
           </Link>
 
           {/* Desktop Navigation */}
