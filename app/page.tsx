@@ -3,7 +3,8 @@
 import { ArrowRight, BookOpen, Users, TrendingUp, ChevronDown, ChevronUp, Factory, Zap, Target, Cpu, Globe, Shield, Gauge, Lightbulb } from 'lucide-react'
 import NewsletterEmbed from '@/components/NewsletterEmbed'
 import LatestIssue from '@/components/LatestIssue'
-import { useState } from 'react'
+import SignupPopup from '@/components/SignupPopup'
+import { useState, useEffect } from 'react'
 
 // Manufacturing Stories Component
 const ManufacturingStories = () => {
@@ -223,6 +224,17 @@ const ManufacturingStories = () => {
 }
 
 export default function Home() {
+  const [showPopup, setShowPopup] = useState(false)
+
+  useEffect(() => {
+    // Show popup after 5 seconds
+    const timer = setTimeout(() => {
+      setShowPopup(true)
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   const scrollToNewsletter = () => {
     const newsletterSection = document.getElementById('newsletter-section')
     if (newsletterSection) {
@@ -376,6 +388,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Signup Popup */}
+      <SignupPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
     </main>
   )
 } 
