@@ -2,20 +2,6 @@
 
 import { useEffect, useState } from 'react'
 
-// Extend the Window interface to include beehiiv
-declare global {
-  interface Window {
-    beehiiv?: {
-      init: (config: {
-        publicationId: string;
-        container: string;
-        theme?: string;
-        onSubscribe?: (email: string) => void;
-      }) => void;
-    };
-  }
-}
-
 const NewsletterEmbed = () => {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
