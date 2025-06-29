@@ -2,6 +2,19 @@
 
 import { useEffect } from 'react'
 
+// Extend the Window interface to include beehiiv
+declare global {
+  interface Window {
+    beehiiv?: {
+      init: (config: {
+        publicationId: string;
+        container: string;
+        theme?: string;
+      }) => void;
+    };
+  }
+}
+
 const NewsletterEmbed = () => {
   useEffect(() => {
     // Load Beehiiv embed script
@@ -22,7 +35,9 @@ const NewsletterEmbed = () => {
 
     return () => {
       // Cleanup
-      document.head.removeChild(script)
+      if (document.head.contains(script)) {
+        document.head.removeChild(script)
+      }
     }
   }, [])
 
