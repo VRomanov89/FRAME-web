@@ -1,4 +1,4 @@
-import { Linkedin, Globe, Mail } from 'lucide-react'
+import { Linkedin, Globe, Mail, Github, Twitter } from 'lucide-react'
 
 const team = [
   {
@@ -6,8 +6,10 @@ const team = [
     title: 'Managing Partner',
     bio: 'Manufacturing operations expert with 15+ years of experience in industrial automation, reliability engineering, and operational excellence. Passionate about helping manufacturing professionals grow their careers and improve their factories.',
     image: '/vladimir-romanov.webp',
-    linkedin: 'https://www.linkedin.com/in/vladimir-romanov/',
-    website: 'https://vladimirromanov.com',
+    linkedin: 'https://www.linkedin.com/in/vladromanov/',
+    github: 'https://github.com/VRomanov89',
+    twitter: 'https://x.com/VRomanov89',
+    website: 'https://www.joltek.com/',
     email: 'vladimir@framexl.com',
     expertise: ['Operations Management', 'Industrial Automation', 'Reliability Engineering', 'Lean Manufacturing']
   }
@@ -79,12 +81,32 @@ export default function Team() {
                     <span className="text-sm">LinkedIn</span>
                   </a>
                   
+                  <a 
+                    href={member.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-2 text-frame-gray-600 hover:text-gray-800 transition-colors"
+                  >
+                    <Github className="w-4 h-4" />
+                    <span className="text-sm">GitHub</span>
+                  </a>
+                  
+                  <a 
+                    href={member.twitter} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-2 text-frame-gray-600 hover:text-black transition-colors"
+                  >
+                    <Twitter className="w-4 h-4" />
+                    <span className="text-sm">Twitter</span>
+                  </a>
+                  
                   {member.website && (
                     <a 
                       href={member.website} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="flex items-center gap-2 text-frame-gray-600 hover:text-frame-blue transition-colors"
+                      className="flex items-center gap-2 text-frame-gray-600 hover:text-green-600 transition-colors"
                     >
                       <Globe className="w-4 h-4" />
                       <span className="text-sm">Website</span>
