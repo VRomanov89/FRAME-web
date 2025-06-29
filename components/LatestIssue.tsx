@@ -92,6 +92,12 @@ const LatestIssue = () => {
         className="inline-flex items-center text-frame-blue font-medium hover:text-blue-700 transition-colors"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={(e) => {
+          if (issue.url === "#") {
+            e.preventDefault()
+            alert("Latest issue will be available once Beehiiv integration is complete!")
+          }
+        }}
       >
         Read Full Issue
         <ArrowRight className="ml-2 h-4 w-4" />

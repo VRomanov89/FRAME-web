@@ -223,6 +223,22 @@ const ManufacturingStories = () => {
 }
 
 export default function Home() {
+  const scrollToNewsletter = () => {
+    const newsletterSection = document.getElementById('newsletter-section')
+    if (newsletterSection) {
+      newsletterSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const openLatestIssue = () => {
+    // This will open the latest issue from the LatestIssue component
+    // For now, we'll scroll to the latest issue section
+    const latestIssueSection = document.getElementById('latest-issue-section')
+    if (latestIssueSection) {
+      latestIssueSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -245,11 +261,17 @@ export default function Home() {
               industry trends, and innovative processes that are reshaping global production.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="btn-primary group">
+              <button 
+                onClick={scrollToNewsletter}
+                className="btn-primary group cursor-pointer"
+              >
                 Subscribe to FRAME
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="btn-secondary">
+              <button 
+                onClick={openLatestIssue}
+                className="btn-secondary cursor-pointer"
+              >
                 Read Latest Issue
               </button>
             </div>
@@ -333,14 +355,14 @@ export default function Home() {
       </section>
 
       {/* Latest Issue */}
-      <section className="section-padding bg-frame-gray-50">
+      <section id="latest-issue-section" className="section-padding bg-frame-gray-50">
         <div className="container-custom">
           <LatestIssue />
         </div>
       </section>
 
       {/* Newsletter CTA */}
-      <section className="section-padding bg-white">
+      <section id="newsletter-section" className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-frame-gray-900 mb-8">
