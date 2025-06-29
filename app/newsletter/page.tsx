@@ -1,11 +1,24 @@
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
+function getDisplayDate(issue: any) {
+  const dateFields = ['publish_date', 'displayed_date', 'created']
+  for (const field of dateFields) {
+    if (issue[field]) {
+      const parsed = new Date(issue[field] * 1000)
+      if (!isNaN(parsed.getTime())) {
+        return parsed.toLocaleDateString()
+      }
+    }
+  }
+  return 'Unpublished'
+}
+
 async function getIssues() {
   const publicationId = process.env.NEXT_PUBLIC_BEEHIIV_PUBLICATION_ID
   const apiKey = process.env.BEEHIIV_API_KEY
   if (!publicationId || !apiKey) return []
-  const res = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?limit=100`, {
+  const res = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?expand=free_web_content&limit=100`, {
     headers: { Authorization: `Bearer ${apiKey}` },
     next: { revalidate: 60 },
   })
@@ -45,10 +58,10 @@ export default async function Newsletter() {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-2 text-frame-gray-500 text-sm">
                     <Calendar className="h-4 w-4" />
-                    <span>{new Date(featured.published_at).toLocaleDateString()}</span>
+                    <span>{getDisplayDate(featured)}</span>
                     <span>•</span>
                     <Clock className="h-4 w-4" />
-                    <span>{featured.read_time || '5 min read'}</span>
+                    <span>{featured.reading_time ? `${featured.reading_time} min read` : '5 min read'}</span>
                   </div>
                   <span className="bg-frame-blue text-white px-3 py-1 rounded-full text-sm font-medium">
                     Featured
@@ -58,7 +71,7 @@ export default async function Newsletter() {
                   {featured.title}
                 </h3>
                 <p className="text-lg text-frame-gray-600 mb-6 leading-relaxed">
-                  {featured.excerpt}
+                  {featured.preview_text || featured.excerpt}
                 </p>
                 <Link 
                   href={`/posts/${featured.slug}`}
@@ -83,16 +96,16 @@ export default async function Newsletter() {
                 <div key={issue.id} className="bg-white border border-frame-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center space-x-2 text-frame-gray-500 text-sm mb-4">
                     <Calendar className="h-4 w-4" />
-                    <span>{new Date(issue.published_at).toLocaleDateString()}</span>
+                    <span>{getDisplayDate(issue)}</span>
                     <span>•</span>
                     <Clock className="h-4 w-4" />
-                    <span>{issue.read_time || '5 min read'}</span>
+                    <span>{issue.reading_time ? `${issue.reading_time} min read` : '5 min read'}</span>
                   </div>
                   <h3 className="text-xl font-bold text-frame-gray-900 mb-3">
                     {issue.title}
                   </h3>
                   <p className="text-frame-gray-600 mb-4 leading-relaxed">
-                    {issue.excerpt}
+                    {issue.preview_text || issue.excerpt}
                   </p>
                   <Link 
                     href={`/posts/${issue.slug}`}
