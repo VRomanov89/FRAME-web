@@ -9,7 +9,7 @@ export async function GET() {
       throw new Error('Missing Beehiiv API credentials')
     }
 
-    const response = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?expand=free_web_content&limit=1&status=published`, {
+    const response = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?expand=free_web_content&limit=10&status=published`, {
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
@@ -23,7 +23,14 @@ export async function GET() {
     const data = await response.json()
     
     if (data.data && data.data.length > 0) {
-      const latestPost = data.data[0]
+      // Sort posts by publish_date in descending order (newest first)
+      const sortedPosts = data.data.sort((a: any, b: any) => {
+        const dateA = a.publish_date || a.displayed_date || a.created || 0
+        const dateB = b.publish_date || b.displayed_date || b.created || 0
+        return dateB - dateA
+      })
+      
+      const latestPost = sortedPosts[0]
       return NextResponse.json({
         id: latestPost.id,
         title: latestPost.title,

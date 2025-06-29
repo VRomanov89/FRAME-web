@@ -26,13 +26,20 @@ async function getIssues() {
   const publicationId = process.env.NEXT_PUBLIC_BEEHIIV_PUBLICATION_ID
   const apiKey = process.env.BEEHIIV_API_KEY
   if (!publicationId || !apiKey) return []
-  const res = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?expand=free_web_content&limit=100`, {
+  const res = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts?expand=free_web_content&limit=100&status=published`, {
     headers: { Authorization: `Bearer ${apiKey}` },
     next: { revalidate: 60 },
   })
   if (!res.ok) return []
   const data = await res.json()
-  return data.data || []
+  
+  // Sort issues by publish_date in descending order (newest first)
+  const issues = data.data || []
+  return issues.sort((a: any, b: any) => {
+    const dateA = a.publish_date || a.displayed_date || a.created || 0
+    const dateB = b.publish_date || b.displayed_date || b.created || 0
+    return dateB - dateA
+  })
 }
 
 export default async function Newsletter() {
@@ -108,8 +115,8 @@ export default async function Newsletter() {
             <h2 className="text-3xl font-bold text-frame-gray-900 mb-12 text-center">All Issues</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {others.map((issue: any) => (
-                <div key={issue.id} className="bg-white border border-frame-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-center space-x-2 text-frame-gray-500 text-sm mb-4">
+                <div key={issue.id} className="group bg-white border border-frame-gray-200 rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:bg-frame-gray-900 hover:border-frame-gray-700 cursor-pointer">
+                  <div className="flex items-center space-x-2 text-frame-gray-500 group-hover:text-frame-gray-300 text-sm mb-4 transition-colors">
                     <Calendar className="h-4 w-4" />
                     <span>{getDisplayDate(issue)}</span>
                     {getReadingTime(issue) && (
@@ -120,18 +127,18 @@ export default async function Newsletter() {
                       </>
                     )}
                   </div>
-                  <h3 className="text-xl font-bold text-frame-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-frame-gray-900 group-hover:text-white mb-3 transition-colors">
                     {issue.title}
                   </h3>
-                  <p className="text-frame-gray-600 mb-4 leading-relaxed">
+                  <p className="text-frame-gray-600 group-hover:text-frame-gray-300 mb-4 leading-relaxed transition-colors">
                     {issue.preview_text || issue.excerpt}
                   </p>
                   <Link 
                     href={`/posts/${issue.slug}`}
-                    className="inline-flex items-center text-frame-blue font-medium hover:text-blue-700 transition-colors"
+                    className="inline-flex items-center text-frame-blue group-hover:text-frame-blue-300 font-medium hover:text-blue-700 transition-colors"
                   >
                     Read More
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               ))}
