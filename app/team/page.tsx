@@ -5,7 +5,7 @@ const team = [
     name: 'Vladimir Romanov',
     title: 'Managing Partner',
     bio: 'Manufacturing operations expert with 15+ years of experience in industrial automation, reliability engineering, and operational excellence. Passionate about helping manufacturing professionals grow their careers and improve their factories.',
-    image: '/team/vladimir-romanov.jpg', // You can add actual photos later
+    image: '/vladimir-romanov.webp',
     linkedin: 'https://www.linkedin.com/in/vladimir-romanov/',
     website: 'https://vladimirromanov.com',
     email: 'vladimir@framexl.com',
