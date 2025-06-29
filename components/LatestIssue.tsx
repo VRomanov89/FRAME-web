@@ -7,11 +7,10 @@ import { useEffect, useState } from 'react'
 interface BeehiivPost {
   id: string
   title: string
-  subtitle: string
-  published_at: string
+  preview_text: string
+  publish_date: number
   reading_time: number
   slug: string
-  url: string
 }
 
 const LatestIssue = () => {
@@ -39,18 +38,24 @@ const LatestIssue = () => {
   // Fallback data if API fails
   const fallbackIssue = {
     title: "The Hidden Costs of Legacy System Obsolescence",
-    subtitle: "Why your aging control systems are costing more than you think, and how to build a realistic modernization roadmap that actually works.",
-    published_at: new Date().toISOString(),
+    preview_text: "Why your aging control systems are costing more than you think, and how to build a realistic modernization roadmap that actually works.",
+    publish_date: Math.floor(Date.now() / 1000),
     reading_time: 8,
-    url: "#"
+    slug: ""
   }
 
   const issue = latestIssue || fallbackIssue
-  const publishDate = new Date(issue.published_at).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  let publishDate = 'Unpublished'
+  if (issue.publish_date) {
+    const parsed = new Date(issue.publish_date * 1000)
+    if (!isNaN(parsed.getTime())) {
+      publishDate = parsed.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    }
+  }
 
   if (loading) {
     return (
@@ -84,24 +89,18 @@ const LatestIssue = () => {
       </h3>
       
       <p className="text-frame-gray-600 mb-6 leading-relaxed">
-        {issue.subtitle}
+        {issue.preview_text}
       </p>
       
-      <Link 
-        href={issue.url}
-        className="inline-flex items-center text-frame-blue font-medium hover:text-blue-700 transition-colors"
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={(e) => {
-          if (issue.url === "#") {
-            e.preventDefault()
-            alert("Latest issue will be available once Beehiiv integration is complete!")
-          }
-        }}
-      >
-        Read Full Issue
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Link>
+      {issue.slug ? (
+        <Link 
+          href={`/posts/${issue.slug}`}
+          className="inline-flex items-center text-frame-blue font-medium hover:text-blue-700 transition-colors"
+        >
+          Read Full Issue
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      ) : null}
     </div>
   )
 }
