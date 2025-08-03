@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Users, TrendingUp, ChevronDown, ChevronUp, Factor
 import NewsletterEmbed from '@/components/NewsletterEmbed'
 import LatestIssue from '@/components/LatestIssue'
 import { useState } from 'react'
+import Link from 'next/link'
 
 // Manufacturing Stories Component
 const ManufacturingStories = () => {
@@ -259,12 +260,12 @@ export default function Home() {
                 Subscribe to FRAME
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button 
-                onClick={openLatestIssue}
-                className="btn-secondary cursor-pointer"
+              <Link 
+                href="/resources"
+                className="btn-secondary inline-flex items-center"
               >
-                Read Latest Issue
-              </button>
+                Explore Resources
+              </Link>
             </div>
           </div>
         </div>
