@@ -1,0 +1,117 @@
+Here are 10 high‑relevance manufacturing case studies aligned with FRAME’s themes: operational resilience, obsolescence management, metrics, AI/IIoT, ERP improvements, and Lean/Quick Response strategies. Each entry includes detailed summaries so you can build rich resource pages.
+
+1. PLC Obsolescence Upgrade at Polytron (Drywall Manufacturer)
+Challenge: Aging PLC‑5 controllers causing downtime, scarce spare parts.
+
+Solution: Multi‑site upgrade to ControlLogix systems, plus HMI and network overhaul.
+
+Outcome: Improved reliability, lower MRO inventory, reduced unplanned downtime 
+KTH Diva Portal
+LinkedIn
+
+2. Toyota’s Quick Response to Aisin Fire (Resilience in JIT)
+Context: 1997 fire destroyed Toyota’s sole P‑valve supplier—risking JIT operations.
+
+Action: Coordinated alternative factories—even from unrelated industries—to produce valves in 3 days.
+
+Result: Avoided major production halt; learned to build slack & supplier redundancy 
+The New Yorker
+
+3. Digital Twin Line Reconfiguration for Battery Plant
+Project: Smart‑factory digital twin to handle disturbances in production line.
+
+Method: Reconfiguration optimizer dynamically reassigns resources to maintain throughput.
+
+Results: Prevented 26% and 63% drops in throughput in two scenarios; optimization in 0.03s 
+arXiv
++15
+arXiv
++15
+arXiv
++15
+
+4. AI/ML Prediction of OEE in Automotive Cable Manufacturing
+Need: OEE lagging behind production issues.
+
+Method: Trained ML models (SVM, XGBoost, Deep Learning) on real plant data.
+
+Finding: DL and Random Forest provided the best OEE prediction accuracy for proactive intervention 
+LinkedIn
+arXiv
+
+5. IIoT Model for Consistent Product Quality (Food Plant)
+Goal: Reduce variability in quality via data-driven control.
+
+Approach: IIoT-based algorithms monitored machines and predicted product quality.
+
+Outcome: High prediction accuracy enabled better in-line control and consistency 
+arXiv
+
+6. Lean Case Studies: Omark, HP, Daman (Lean Manufacturing in Practice)
+Examples:
+
+Omark (ZIPS): Inventory reduced by 92%, productivity up 30%, scrap down 20%.
+
+Hewlett‑Packard divisions: 50% labor cost reduction; cycle times shortened dramatically.
+
+Daman: Cycle times down 97%, setup times halved, lead times cut to days 
+Wikipedia
+
+7. ERP Transformation: HawksCode Next‑Gen Implementation
+Scope: Multi‑country manufacturer with disjointed ERP systems.
+
+Solution: Cloud-native, AI-enhanced ERP built for regulatory and operational complexity.
+
+Impact: Harmonized operations globally, better compliance and real-time visibility 
+hawkscode.com
+
+8. Flexible Automation & Digital Twin (Hitachi)
+Framework: Increase automation flexibility, implement digital twins and remote AR/VR maintenance.
+
+Outcome: Maintained continuity during disruptions, improved remote operations and resilience 
+Social Innovation
+
+9. Integrated Work System (IWS) for Dairy Manufacturer (EY)
+Scenario: 27‑plant footprint underperforming continuous improvement program.
+
+Deployment: IWS in pilot plant.
+
+Results: Changeover down 75%, throughput up 25%, mean time between failures doubled—used as model for broader rollout 
+EY
++1
+ScienceDirect
++1
+
+10. Quantifying Resilience in Manufacturing (Academic Framework)
+Study: Developed mathematical model measuring penalty of disruptions.
+
+Use: Quantitative resilience score based on system recovery times and variability.
+
+Benefit: Enables benchmarking and linking resilience to downtime and throughput performance 
+Taylor & Francis Online
+
+📋 Summary Table
+#	Title / Focus Area	Highlights
+1	PLC Obsolescence Upgrade (Polytron)	Savings, risk mitigation through modernization
+2	Toyota Aisin Recovery	Slack, supplier diversification, JIT resilience
+3	Digital Twin Reconfiguration (Battery plant)	Adaptive throughput management
+4	OEE Prediction via AI (Automotive cables)	Proactive maintenance via analytics
+5	IIoT Quality Consistency (Food plant)	Machine-level monitoring and control
+6	Lean Implementation (Omark, HP, Daman)	Dramatic efficiency and lead-time gains
+7	AI‑enhanced ERP Rollout (HawksCode)	Global alignment, compliance, unified data
+8	HITACHI Automation / Twin Strategy	Remote resilience via digital technologies
+9	IWS Pilot Deployment (EY/Dairy)	Operational speed and reliability boost
+10	Resilience Quantification Model	Analytical framework to measure disruption cost
+
+▶️ Next Steps:
+For each case, you can build a resource page structure that includes:
+
+Problem, solution, results in actionable detail
+
+Visuals or diagrams where possible (charts, before/after)
+
+Lessons aligned with FRAME themes (metrics misuse, obsolescence, floor practices, etc.)
+
+Call-outs: “How this relates to FRAME: DDS, quality signals, operator trust…”
+
+Let me know which ones you’d like fully structured content pages for, or if you want variant case examples (e.g. specific brands, sector-focused).

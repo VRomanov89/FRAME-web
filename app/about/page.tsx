@@ -140,7 +140,7 @@ export default function About() {
               <a href="/#subscribe" className="btn-primary inline-flex items-center">
                 Subscribe to FRAME
               </a>
-              <a href="/newsletter" className="btn-secondary inline-flex items-center">
+              <a href="/newsletter" className="bg-white text-frame-gray-900 hover:bg-frame-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center">
                 Explore the Dispatch
               </a>
             </div>
