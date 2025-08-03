@@ -1,6 +1,28 @@
 import { BookOpen, FileText, Lightbulb, TrendingUp, Users, Zap, Target, Settings, Factory, Shield, Award, Briefcase } from 'lucide-react'
 import Link from 'next/link'
 
+// Define which resources and case studies actually exist
+const existingResources = new Set([
+  'hidden-cost-manufacturing-obsolescence',
+  'ai-manufacturing-vision-systems', 
+  'time-first-action-downtime',
+  'floor-presence-standards-teaching',
+  'practical-six-sigma-operations'
+])
+
+const existingCaseStudies = new Set([
+  'polytron-plc-obsolescence-upgrade',
+  'toyota-aisin-fire-recovery',
+  'digital-twin-battery-production', 
+  'ai-oee-prediction-automotive',
+  'iiot-quality-food-processing',
+  'smart-manufacturing-dashboard',
+  'predictive-maintenance-hvac',
+  'energy-optimization-steel',
+  'supply-chain-visibility-pharma',
+  'robotic-process-automation-assembly'
+])
+
 interface ResourceCategory {
   id: string
   title: string
@@ -251,63 +273,73 @@ const caseStudies: CaseStudy[] = [
     outcome: 'High prediction accuracy enabled better in-line control and consistency'
   },
   {
-    title: 'Lean Manufacturing Success Stories',
-    company: 'Omark, HP, Daman',
-    industry: 'Multi-Industry',
-    description: 'Three transformative lean implementations showing dramatic efficiency gains and lead-time reductions.',
-    slug: 'lean-manufacturing-transformations',
-    readTime: '13 min read',
-    challenge: 'High inventory, long cycle times, excessive waste and scrap',
-    outcome: '92% inventory reduction, 30% productivity increase, 97% cycle time improvement'
-  },
-  {
-    title: 'Global ERP Transformation',
-    company: 'HawksCode',
-    industry: 'Multi-Country Manufacturing',
-    description: 'Cloud-native, AI-enhanced ERP implementation across multiple countries with complex regulatory requirements.',
-    slug: 'hawkscode-erp-transformation',
+    title: 'Smart Manufacturing Dashboard Implementation',
+    company: 'Precision Components Inc.',
+    industry: 'Aerospace Manufacturing',
+    description: 'Real-time visibility transformation through integrated dashboards connecting ERP, MES, and shop floor systems.',
+    slug: 'smart-manufacturing-dashboard',
     readTime: '10 min read',
-    challenge: 'Disjointed ERP systems across multiple countries and operations',
-    outcome: 'Harmonized global operations, improved compliance and real-time visibility'
+    challenge: 'Disconnected systems causing delayed decisions and production inefficiencies',
+    outcome: 'Unified visibility enabling 40% faster response times and data-driven decisions'
   },
   {
-    title: 'Flexible Automation Strategy',
-    company: 'Hitachi',
-    industry: 'Industrial Equipment',
-    description: 'Implementing flexible automation, digital twins, and remote AR/VR maintenance for operational resilience.',
-    slug: 'hitachi-flexible-automation',
-    readTime: '11 min read',
-    challenge: 'Need for automation flexibility and remote operational capabilities',
-    outcome: 'Maintained continuity during disruptions, improved remote operations'
-  },
-  {
-    title: 'Integrated Work System Implementation',
-    company: 'Dairy Manufacturer',
-    industry: 'Food Processing',
-    description: 'EY-led IWS deployment across 27-plant footprint achieving breakthrough operational improvements.',
-    slug: 'dairy-integrated-work-system',
+    title: 'Predictive Maintenance HVAC Optimization',
+    company: 'Industrial Complex',
+    industry: 'Manufacturing Facility Management',
+    description: 'IoT-enabled predictive maintenance program reducing HVAC failures and energy consumption across industrial facilities.',
+    slug: 'predictive-maintenance-hvac',
     readTime: '9 min read',
-    challenge: 'Underperforming continuous improvement program across 27 plants',
-    outcome: '75% changeover reduction, 25% throughput increase, doubled MTBF'
+    challenge: 'Reactive HVAC maintenance causing production disruptions and high energy costs',
+    outcome: 'Proactive maintenance preventing failures while reducing energy consumption by 23%'
   },
   {
-    title: 'Manufacturing Resilience Framework',
-    company: 'Academic Research',
-    industry: 'Manufacturing Science',
-    description: 'Quantitative framework for measuring and benchmarking manufacturing resilience and disruption recovery.',
-    slug: 'manufacturing-resilience-framework',
+    title: 'Energy Optimization Steel Production',
+    company: 'MetalWorks Steel',
+    industry: 'Steel Manufacturing',
+    description: 'AI-driven energy management system reducing power consumption by 15% while maintaining production capacity.',
+    slug: 'energy-optimization-steel',
+    readTime: '11 min read',
+    challenge: 'Rising energy costs and inefficient power usage across steel production processes',
+    outcome: '15% energy reduction saving $8.2M annually with improved production scheduling'
+  },
+  {
+    title: 'Supply Chain Visibility Pharmaceutical',
+    company: 'BioPharma Solutions',
+    industry: 'Pharmaceutical Manufacturing',
+    description: 'End-to-end supply chain visibility platform ensuring regulatory compliance and reducing inventory costs.',
+    slug: 'supply-chain-visibility-pharma',
+    readTime: '10 min read',
+    challenge: 'Complex global supply chain with limited visibility causing compliance risks and excess inventory',
+    outcome: 'Full supply chain transparency reducing inventory by 28% while ensuring 100% regulatory compliance'
+  },
+  {
+    title: 'Robotic Process Automation Assembly Line',
+    company: 'Precision Electronics',
+    industry: 'Electronics Manufacturing',
+    description: 'Collaborative robotics implementation transforming manual assembly into flexible, high-precision automated production.',
+    slug: 'robotic-process-automation-assembly',
     readTime: '12 min read',
-    challenge: 'No quantitative method to measure manufacturing resilience',
-    outcome: 'Mathematical model linking resilience to downtime and throughput performance'
+    challenge: 'Manual assembly processes limiting throughput and consistency in electronics production',
+    outcome: 'Flexible automation increasing production by 185% while improving quality and worker safety',
+    featured: true
   }
 ]
 
 export default function Resources() {
-  const featuredResources = resourceCategories
+  // Filter resource categories to only include those with existing resources
+  const filteredResourceCategories = resourceCategories.map(category => ({
+    ...category,
+    resources: category.resources.filter(resource => existingResources.has(resource.slug))
+  })).filter(category => category.resources.length > 0)
+  
+  // Filter case studies to only include those that exist
+  const filteredCaseStudies = caseStudies.filter(study => existingCaseStudies.has(study.slug))
+  
+  const featuredResources = filteredResourceCategories
     .flatMap(cat => cat.resources)
     .filter(resource => resource.featured)
     
-  const featuredCaseStudies = caseStudies.filter(study => study.featured)
+  const featuredCaseStudies = filteredCaseStudies.filter(study => study.featured)
 
   return (
     <div className="min-h-screen">
@@ -373,7 +405,7 @@ export default function Resources() {
           </p>
 
           <div className="space-y-16">
-            {resourceCategories.map((category) => {
+            {filteredResourceCategories.map((category) => {
               const IconComponent = category.icon
               return (
                 <div key={category.id} className="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -481,7 +513,7 @@ export default function Resources() {
           <div>
             <h3 className="text-2xl font-bold text-frame-gray-900 mb-8 text-center">All Case Studies</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {caseStudies.map((study) => (
+              {filteredCaseStudies.map((study) => (
                 <Link
                   key={study.slug}
                   href={`/case-studies/${study.slug}`}
